@@ -1,0 +1,121 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.addButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+}
+
+.inputStyle {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 100%
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+span.text-danger {
+    font-size: 13px;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*--thank you pop starts here--*/
+
+.thank-you-pop {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.thank-you-pop img {
+    width: 76px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.thank-you-pop h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+    color: #5C5C5C;
+}
+
+.thank-you-pop p {
+    font-size: 20px;
+    margin-bottom: 27px;
+    color: #5C5C5C;
+}
+
+.thank-you-pop h3.cupon-pop {
+    font-size: 25px;
+    margin-bottom: 40px;
+    color: #222;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    border: 2px dashed #222;
+    clear: both;
+    font-weight: normal;
+}
+
+.thank-you-pop h3.cupon-pop span {
+    color: #03A9F4;
+}
+
+.thank-you-pop a {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 9px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #8BC34A;
+    border-radius: 17px;
+}
+
+.thank-you-pop a i {
+    margin-right: 5px;
+    color: #fff;
+}
+
+#ignismyModal .modal-header {
+    border: 0px;
+}
+
+
+/*--thank you pop ends here--*/

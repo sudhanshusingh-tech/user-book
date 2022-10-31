@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/users")
+    fetch("https://user-book.onrender.com/users")
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -74,11 +74,15 @@ class App extends Component {
         };
         if (this.state.updateTrigger === true) {
           e.preventDefault();
-          fetch("http://localhost:4000/users/" + this.state.idForManipulation, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newEntry),
-          })
+          fetch(
+            "https://user-book.onrender.com/users/" +
+              this.state.idForManipulation,
+            {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(newEntry),
+            }
+          )
             .then((res) => {
               if (res.ok) {
                 return res.json();
@@ -98,7 +102,7 @@ class App extends Component {
             .catch((error) => console.error(error));
         } else {
           e.preventDefault();
-          fetch("http://localhost:4000/users/addNewUser", {
+          fetch("https://user-book.onrender.com/users/addNewUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newEntry),
@@ -176,11 +180,14 @@ class App extends Component {
 
     const handleDelete = (e) => {
       e.preventDefault();
-      fetch("http://localhost:4000/users/" + this.state.idForManipulation, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ softDelete: 1 }),
-      })
+      fetch(
+        "https://user-book.onrender.com/users/" + this.state.idForManipulation,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ softDelete: 1 }),
+        }
+      )
         .then((res) => {
           if (res.ok) return res.json();
           else {

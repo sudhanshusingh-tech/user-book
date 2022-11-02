@@ -88,25 +88,20 @@ updateAppState(true, true, responseJson.error);
 }
             } else {
           e.preventDefault();
-          fetch("https://user-book.onrender.com/users/addNewUser", {
+         let response = await fetch("https://user-book.onrender.com/users/addNewUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newEntry),
-          })
-            .then((res) => {
-              if (res.ok) {
+          });
+            let responseJson = await response.json();
+if(!responseJson.error){
+ this.setState({ show: false, updateTrigger: false });
                 updateAppState(true, false, "User Added Successfully");
-                this.setState({ show: false });
                 this.componentDidMount();
-              } else {
-                res.text().then((text) => {
-                  let errorJson = JSON.parse(text);
-                  updateAppState(true, true, errorJson.error);
-                });
-              }
-            })
-            .catch((error) => console.log("Caught" + error));
-        }
+    }
+else{
+updateAppState(true, true, responseJson.error);
+}}
         handleClear();
       } else {
         e.preventDefault();
@@ -165,35 +160,28 @@ updateAppState(true, true, responseJson.error);
       });
     };
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
       e.preventDefault();
-      fetch(
+     let response = fetch(
         "https://user-book.onrender.com/users/" + this.state.idForManipulation,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ softDelete: 1 }),
         }
-      )
-        .then((res) => {
-          if (res.ok) return res.json();
-          else {
-            updateAppState(true, false, "Something went wrong");
-          }
-        })
-        .then(async (data) => {
-          if (data.error) updateAppState(true, false, data.error);
-          else {
-            this.setState({
-              deleteModal: false,
-            });
-            updateAppState(true, false, "User Deleted Successfully");
-          }
-        })
-        .catch((error) => console.error(error));
-      setTimeout(() => {
+      );
+            let responseJson = await response.json();
+if(!responseJson.error){
+ this.setState({ show: false, updateTrigger: false });
+                updateAppState(true, false, "User Deleted Successfully");
+                this.componentDidMount();
+    }
+else{
+updateAppState(true, true, responseJson.error);
+}}
+        handleClear();
+        setTimeout(() => {
         updateAppState(false, false, "");
-        this.componentDidMount();
       }, 2000);
     };
 

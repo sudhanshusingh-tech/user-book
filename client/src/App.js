@@ -102,7 +102,7 @@ if(!responseJson.error){
 else{
 updateAppState(true, true, responseJson.error);
 }}
-        handleClear();
+      handleClear();  
       } else {
         e.preventDefault();
         updateAppState(true, true, "Fill All Details Properly");
@@ -178,7 +178,7 @@ if(!responseJson.error){
     }
 else{
 updateAppState(true, true, responseJson.error);
-}}
+}
         handleClear();
         setTimeout(() => {
         updateAppState(false, false, "");

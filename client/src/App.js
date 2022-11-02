@@ -121,6 +121,7 @@ class App extends Component {
             })
             .catch((error) => console.log("Caught" + error));
         }
+        this.handleClear();
       } else {
         e.preventDefault();
         updateAppState(true, true, "Fill All Details Properly");

@@ -36,20 +36,14 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch("https://user-book.onrender.com/users")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-        }
-      })
-      .then((data) => {
-        this.setState({
-          users: data,
+  async componentDidMount() {
+   let response = await fetch("https://user-book.onrender.com/users");
+let responseJson = await response.json();
+if(!responseJson.error){
+ this.setState({
+          users: responseJson,
         });
-      })
-      .catch((error) => console.error(error));
+    }
   }
 
   render() {
@@ -57,7 +51,7 @@ class App extends Component {
       await this.setState({ messageModal, errorFlag, message });
     };
 
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
       if (
         !this.state.name_error &&
         !this.state.mobile_error &&
@@ -74,7 +68,7 @@ class App extends Component {
         };
         if (this.state.updateTrigger === true) {
           e.preventDefault();
-          fetch(
+         let response = await fetch(
             "https://user-book.onrender.com/users/" +
               this.state.idForManipulation,
             {
@@ -82,25 +76,17 @@ class App extends Component {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(newEntry),
             }
-          )
-            .then((res) => {
-              if (res.ok) {
-                return res.json();
-              } else {
-                updateAppState(true, false, "Something went wrong");
-              }
-            })
-            .then((data) => {
-              if (data.error) {
-                updateAppState(true, true, data.error);
-              } else {
-                this.setState({ show: false, updateTrigger: false });
+          );
+let responseJson = await response.json();
+if(!responseJson.error){
+ this.setState({ show: false, updateTrigger: false });
                 updateAppState(true, false, "User Updated Successfully");
                 this.componentDidMount();
-              }
-            })
-            .catch((error) => console.error(error));
-        } else {
+    }
+else{
+updateAppState(true, true, data.error);
+}
+            } else {
           e.preventDefault();
           fetch("https://user-book.onrender.com/users/addNewUser", {
             method: "POST",

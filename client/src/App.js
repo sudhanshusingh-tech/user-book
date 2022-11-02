@@ -162,7 +162,7 @@ updateAppState(true, true, responseJson.error);
 
     const handleDelete = async (e) => {
       e.preventDefault();
-     let response = fetch(
+     let response = await fetch(
         "https://user-book.onrender.com/users/" + this.state.idForManipulation,
         {
           method: "DELETE",
@@ -172,7 +172,7 @@ updateAppState(true, true, responseJson.error);
       );
             let responseJson = await response.json();
 if(!responseJson.error){
- this.setState({ show: false, updateTrigger: false });
+ this.setState({ show: false, updateTrigger: false, deleteModal:false });
                 updateAppState(true, false, "User Deleted Successfully");
                 this.componentDidMount();
     }

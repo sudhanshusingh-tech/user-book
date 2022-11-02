@@ -84,7 +84,7 @@ if(!responseJson.error){
                 this.componentDidMount();
     }
 else{
-updateAppState(true, true, data.error);
+updateAppState(true, true, responseJson.error);
 }
             } else {
           e.preventDefault();
